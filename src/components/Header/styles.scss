@@ -1,0 +1,26 @@
+@import "../../mixin.scss";
+
+.app-header {
+  padding: 1rem 10%;
+  background: $cyan;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h3 {
+    color: $white;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+
+    list-style: none;
+
+  }
+}

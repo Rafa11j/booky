@@ -1,11 +1,25 @@
 import React from 'react';
-import { Navbar } from 'react-bootstrap';
+import { MdHome, MdFavorite } from 'react-icons/md';
+
 import './styles.scss';
+import { HeaderMenuItem } from './HeaderMenuItem';
 
 export const Header: React.FC = () => {
   return (
-    <Navbar bg="light" expand="lg" className="">
+    <header className="app-header">
       <h3>Bookys</h3>
-    </Navbar>
+      <ul className="menu">
+        <HeaderMenuItem 
+          icon={MdHome}
+          label="Início"
+          path="/"
+        />
+        <HeaderMenuItem 
+          icon={MdFavorite}
+          label="Favoritos"
+          path="/favorites"
+        />
+      </ul>
+    </header>
   )
 }
