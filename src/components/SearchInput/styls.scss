@@ -27,7 +27,7 @@
     width: auto;
     transition: width 0.2s;
     &::placeholder {
-      color: $input_placeholder;
+      color: $gray;
     }
   }
 

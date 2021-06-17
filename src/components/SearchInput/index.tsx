@@ -1,14 +1,16 @@
-import React, { ChangeEvent, useCallback } from 'react';
+import React, { ChangeEvent, useCallback, useState } from 'react';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { useState } from 'react';
 import { MdSearch, MdInfoOutline } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { api } from '../../services/api';
+import { searchBooks } from '../../store/modules/books/actions';
 
 import './styls.scss';
-import { api } from '../../services/api';
 
 export const SearchInput: React.FC = () => {
   const [expandInput, setExpandInput] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+  const dispatch = useDispatch();
 
   const onFocusInput = useCallback(() => {
     setExpandInput(true);
@@ -21,11 +23,11 @@ export const SearchInput: React.FC = () => {
   const handleSearch = useCallback(async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (searchValue.length > 2) {
-      console.log(searchValue);
-      const response = await api.get(`/volumes?q=${searchValue}`);
+      const response = await api.get(`/volumes?q=${searchValue}&maxResults=12`);
       console.log(response);
+      dispatch(searchBooks(response.data));
     }
-  }, [searchValue]);
+  }, [searchValue, dispatch]);
 
   return (
     <form className={`search-input ${expandInput && 'expand-search-input'}`} onSubmit={handleSearch}>

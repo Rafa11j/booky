@@ -36,3 +36,9 @@ export interface IBookState {
   selfLink: string;
   volumeInfo: IVolumeInfo;
 }
+
+export interface ISearchBookState {
+  kind: string;
+  totalItems: number;
+  items: IBookState[];
+}

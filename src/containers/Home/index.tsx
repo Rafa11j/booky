@@ -1,20 +1,16 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { BookList } from '../../components/BookList';
 import { SearchSection } from '../../components/SearchSection';
 import './styles.scss';
 
 export const Home: React.FC = () => {
-  const books = useSelector(state => state);
-
-  useEffect(() => {
-    console.log(books);
-  }, [books]);
 
   return (
     <div>
       <SearchSection />
-      <h1 style={{ marginTop: 40 }}>Home Page</h1>
+      <div style={{ marginTop: '4rem', paddingLeft: '10%', paddingRight: '10%' }}>
+        <BookList />
+      </div>
     </div>
   );
 }

@@ -1,16 +1,10 @@
-import { IBookState } from "./types";
+import { ISearchBookState } from "./types";
 
-export function listFavoritiesBooks() {
+export function searchBooks(searchBook: ISearchBookState) {
   return {
-    type: 'LIST_FAVORITIES_BOOKS'
-  }
-}
-
-export function addBookToFavorities(book: IBookState) {
-  return {
-    type: 'ADD_BOOK_TO_FAVORITIES',
+    type: 'SEARCH_BOOKS',
     payload: {
-      book,
+      searchBook,
     }
   }
 }
