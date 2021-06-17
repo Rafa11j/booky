@@ -1,0 +1,10 @@
+@import "../../mixin.scss";
+
+.search-section {
+  height: 5rem;
+  position: relative;
+  background: $cyan;
+
+  display: flex;
+  justify-content: center;
+}

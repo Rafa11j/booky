@@ -1,0 +1,39 @@
+@import "../../mixin.scss";
+
+.search-input {
+  display: flex;
+  align-items: center;
+  background: $white;
+  border-radius: 0.75rem;
+  padding: 1.25rem 2rem;
+  position: absolute;
+  box-shadow: 0px 3px 6px rgba(7, 101, 135, 0.16);
+  min-width: 290px;
+  width: 340px;
+  
+  bottom: -1.75rem;
+  transition: width 0.2s;
+
+  svg {
+    color: $cyan_dark;
+    font-size: 18px;
+  }
+
+  input {
+    border: none;
+    flex: 1;
+    margin-left: 0.5rem;
+    color: $cyan_dark;
+    width: auto;
+    transition: width 0.2s;
+    &::placeholder {
+      color: $input_placeholder;
+    }
+  }
+
+  &.expand-search-input {
+    width: 80%;
+    transition: 0.3s;
+  }
+
+}

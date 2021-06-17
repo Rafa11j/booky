@@ -5,6 +5,13 @@ import { MdHome } from 'react-icons/md';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useLocation: () => ({
+    pathname: "localhost:3000/"
+  })
+}));
+
 describe('Tests Header Component', () => {
 
   const propsMock = {
