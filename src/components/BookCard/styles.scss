@@ -1,7 +1,8 @@
 @import "../../mixin.scss";
 
 .book-card {
-  
+  min-height: 410px;
+  max-height: 410px;
   .header-container {
     display: flex;
     img {
@@ -52,5 +53,34 @@
     border-color: $cyan_dark;
     box-shadow: 0px 3px 6px rgba(7, 101, 135, 0.16);
     transform: translateY(-0.25rem);
+  }
+
+  .book-footer {
+    text-align: center;
+
+    svg {
+      cursor: pointer;
+      font-size: 18px;
+      color: $cyan;
+      transition: 0.2s;
+    }
+
+    
+
+    .favorite-button {
+      &:hover {
+        color: $red_dark;
+      }
+
+      &.isFavorite {
+        color: $red;
+      }
+    }
+
+    .view-button {
+      &:hover {
+        color: $cyan_dark;
+      }
+    }
   }
 }

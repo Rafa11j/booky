@@ -35,10 +35,16 @@ export interface IBookState {
   etag: string;
   selfLink: string;
   volumeInfo: IVolumeInfo;
+  isFavorite?: boolean;
 }
 
 export interface ISearchBookState {
   kind: string;
   totalItems: number;
   items: IBookState[];
+}
+
+export interface IApplicationBooks {
+  searchBook: ISearchBookState;
+  favoritesBooks: IBookState[];
 }

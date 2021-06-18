@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { ISearchBookState } from './modules/books/types';
+import { IApplicationBooks } from './modules/books/types';
 
 import rootReducer from './modules/rootReducer';
 import rootSaga from './modules/rootSaga';
@@ -10,7 +10,7 @@ const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware];
 
 export interface IApplicationState {
-  book: ISearchBookState
+  application: IApplicationBooks;
 }
 
 const store = createStore(rootReducer, applyMiddleware(
