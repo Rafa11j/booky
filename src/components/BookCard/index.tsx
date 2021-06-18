@@ -28,10 +28,9 @@ const BookCard: React.FC<BookCardServiceProps> = props => {
     const starsLength = Array.from({length: 5}, (v, k) => k + 1);
     if (rate) {
       const format = String(rate).split('.');
+      const length = Number(format[0]);
       if (format.length > 1) {
-        const length = Number(format[0]);
         const list = Array.from({length}, (v, k) => k + 1)
-
         const rest = 5 - (list.length + 1);
         const restList = Array.from({length: rest}, (v, k) => k + 1)
 
@@ -52,7 +51,6 @@ const BookCard: React.FC<BookCardServiceProps> = props => {
           </>
         )
       } else {
-        const length = Number(format[0]);
         const list = Array.from({length}, (v, k) => k + 1)
         const rest = 5 - list.length;
         const restList = Array.from({length: rest}, (v, k) => k + 1)

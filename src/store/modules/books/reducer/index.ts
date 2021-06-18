@@ -9,7 +9,9 @@ const INITIAL_STATE: IApplicationBooks = {
     totalItems: 0,
     items: [],
   },
-  favoritesBooks: favoritesBooksLocal ? JSON.parse(favoritesBooksLocal) : []
+  favoritesBooks: favoritesBooksLocal ? JSON.parse(favoritesBooksLocal) : [],
+  loading: false,
+  searchValue: ''
 };
 
 export const application: Reducer<IApplicationBooks> = (
@@ -36,7 +38,12 @@ export const application: Reducer<IApplicationBooks> = (
       }
       state.searchBook = searchBook as ISearchBookState;
 
-      return state;
+      return {
+        ...state,
+        searchBook,
+        searchValue: action.payload.searchValue,
+        loading: false
+      };
     }
     case 'ADD_FAVORITE_BOOK': {
       const myFavoriteBooks = [...state.favoritesBooks, action.payload.book];
@@ -44,7 +51,22 @@ export const application: Reducer<IApplicationBooks> = (
       localStorage.setItem('myFavoriteBooks', JSON.stringify(myFavoriteBooks));
 
       state.favoritesBooks = myFavoriteBooks;
-      return state;
+      return {
+        ...state,
+        favoritesBooks: myFavoriteBooks,
+      };
+    }
+    case 'START_LOADING': {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case 'STOP_LOADING': {
+      return {
+        ...state,
+        loading: false,
+      };
     }
     default:
       return state;

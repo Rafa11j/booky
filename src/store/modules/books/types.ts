@@ -47,4 +47,6 @@ export interface ISearchBookState {
 export interface IApplicationBooks {
   searchBook: ISearchBookState;
   favoritesBooks: IBookState[];
+  loading: boolean;
+  searchValue: string;
 }
