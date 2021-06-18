@@ -8,6 +8,7 @@ const INITIAL_STATE: IApplicationBooks = {
     kind: '',
     totalItems: 0,
     items: [],
+    page: 0,
   },
   favoritesBooks: favoritesBooksLocal ? JSON.parse(favoritesBooksLocal) : [],
   loading: false,
@@ -36,13 +37,15 @@ export const application: Reducer<IApplicationBooks> = (
 
         })
       }
-      state.searchBook = searchBook as ISearchBookState;
 
       return {
         ...state,
-        searchBook,
+        searchBook: {
+          ...searchBook,
+          page: 0,
+        },
         searchValue: action.payload.searchValue,
-        loading: false
+        loading: false,
       };
     }
     case 'ADD_FAVORITE_BOOK': {
@@ -66,6 +69,58 @@ export const application: Reducer<IApplicationBooks> = (
       return {
         ...state,
         loading: false,
+      };
+    }
+    case 'NEXT_PAGE': {
+      const searchBook = action.payload.searchBook as ISearchBookState;
+
+      if (state.favoritesBooks.length > 0) {
+        state.favoritesBooks.forEach(favorite => {
+          const inFavorites = searchBook.items.some(book => book.id === favorite.id)
+
+          if (inFavorites) {
+            searchBook.items.forEach(book => {
+              if (book.id === favorite.id) {
+                book.isFavorite = true;
+              }
+            })
+          }
+
+        })
+      }
+
+      return {
+        ...state,
+        searchBook: {
+          ...searchBook,
+          page: state.searchBook.page + 1,
+        },
+      };
+    }
+    case 'PREVIOUS_PAGE': {
+      const searchBook = action.payload.searchBook as ISearchBookState;
+
+      if (state.favoritesBooks.length > 0) {
+        state.favoritesBooks.forEach(favorite => {
+          const inFavorites = searchBook.items.some(book => book.id === favorite.id)
+
+          if (inFavorites) {
+            searchBook.items.forEach(book => {
+              if (book.id === favorite.id) {
+                book.isFavorite = true;
+              }
+            })
+          }
+
+        })
+      }
+
+      return {
+        ...state,
+        searchBook: {
+          ...searchBook,
+          page: state.searchBook.page - 1,
+        },
       };
     }
     default:

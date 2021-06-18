@@ -1,5 +1,6 @@
 import React, { memo, useState } from 'react';
 import { useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { Card, Row, Col } from 'react-bootstrap';
 import { MdFavoriteBorder, MdFavorite, MdStar, MdStarHalf, MdVisibility } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
@@ -127,7 +128,9 @@ const BookCard: React.FC<BookCardServiceProps> = props => {
             }
           </Col>
           <Col>
-            <MdVisibility className="view-button" />
+            <Link to={`/book/${book.id}`}>
+              <MdVisibility className="view-button" />
+            </Link>
           </Col>
         </Row>
       </Card.Footer>

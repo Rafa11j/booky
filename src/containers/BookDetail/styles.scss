@@ -1,0 +1,101 @@
+@import "../../mixin.scss";
+
+.book-detail-container {
+  padding: 3.5rem 10%;
+
+  .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+      color: $cyan;
+    }
+
+    a {
+      text-decoration: none;
+      color: $cyan;
+      transition: 0.2s;
+
+      &:hover {
+        color: $cyan_dark;
+      }
+    }
+  }
+
+
+  .book-detail-card {
+
+    .header-container {
+      display: flex;
+
+      img {
+        object-fit: cover;
+      }
+      .book-header-info {
+        padding-left: 0.5rem;
+  
+        h1 {
+          color: $cyan_dark
+        }
+  
+        .authors {
+          color: $gray_dark;
+          margin-bottom: 0;
+        }
+
+        .book-averageRating {
+          display: flex;
+          align-items: center;
+          span {
+            color: $gray_dark;
+            margin-right: 0.25rem;
+          }
+        }
+      }
+  
+    }
+  
+    .book-description {
+      margin-top: 0.75rem;
+      span {
+        font-size: 18px;
+      }
+      p {
+        background: $gray_light;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        text-align: justify;
+      }
+    }
+  
+    .book-footer {
+      text-align: center;
+  
+      svg {
+        cursor: pointer;
+        font-size: 18px;
+        color: $cyan;
+        transition: 0.2s;
+      }
+  
+      
+  
+      .favorite-button {
+        &:hover {
+          color: $red_dark;
+        }
+  
+        &.isFavorite {
+          color: $red;
+        }
+      }
+  
+      .view-button {
+        &:hover {
+          color: $cyan_dark;
+        }
+      }
+    }
+  }
+}

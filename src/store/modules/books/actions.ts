@@ -10,6 +10,24 @@ export function searchBooks(searchBook: ISearchBookState, searchValue: string) {
   }
 }
 
+export function nextPage(searchBook: ISearchBookState) {
+  return {
+    type: 'NEXT_PAGE',
+    payload: {
+      searchBook,
+    }
+  }
+}
+
+export function previousPage(searchBook: ISearchBookState) {
+  return {
+    type: 'PREVIOUS_PAGE',
+    payload: {
+      searchBook,
+    }
+  }
+}
+
 export function addFavoriteBook(book: IBookState) {
   return {
     type: 'ADD_FAVORITE_BOOK',

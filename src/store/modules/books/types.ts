@@ -1,6 +1,10 @@
 export interface IImageLink {
   smallThumbnail: string;
   thumbnail: string;
+  small?: string;
+  medium?: string;
+  large?: string;
+  extraLarge?: string;
 }
 
 export interface IReadingMode {
@@ -16,6 +20,7 @@ export interface IIndustryIdentifier {
 export interface IVolumeInfo {
   title: string;
   authors: string[];
+  publisher: string;
   publishedDate: string;
   description: string;
   industryIdentifiers: IIndustryIdentifier[]
@@ -42,6 +47,7 @@ export interface ISearchBookState {
   kind: string;
   totalItems: number;
   items: IBookState[];
+  page: number;
 }
 
 export interface IApplicationBooks {
