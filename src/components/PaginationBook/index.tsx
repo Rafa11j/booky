@@ -34,8 +34,6 @@ const PaginationBook: React.FC = () => {
     }
   }, [dispatch, app, addNotification]);
 
-  console.log(app.searchBook);
-
   const onPreviousPage = useCallback(async () => {
     try {
       dispatch(startLoading());
@@ -53,8 +51,6 @@ const PaginationBook: React.FC = () => {
       dispatch(stopLoading());
     }
   }, [dispatch, app, addNotification]);
-
-  console.log(app.searchBook);
 
   return (
     <div className="book-pagination-container">

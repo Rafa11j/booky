@@ -3,7 +3,7 @@
 .header-menu-item {
   cursor: pointer;
   border-radius: 0.25rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
   transition: background 0.2s;
 
   a {
@@ -13,7 +13,10 @@
 
     svg {
       font-size: 1.375rem;
-      margin-right: 0.4rem;
+    }
+
+    span {
+      margin-left: 0.4rem;
     }
   }
 
@@ -31,5 +34,11 @@
 
   &.active {
     background: $cyan_dark;
+  }
+
+  @media only screen and (max-width: 600px) {
+    span {
+      display: none;
+    }
   }
 }

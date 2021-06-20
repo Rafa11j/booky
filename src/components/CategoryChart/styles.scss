@@ -1,0 +1,27 @@
+.category-chart-container {
+  margin-bottom: 1rem;
+  .category-chart {
+    max-width: 380px;
+    min-width: 300px;
+    cursor: pointer;
+  }
+
+  .category-chart-container-collapse {
+    padding: 1rem;
+  }
+
+  .subtitle-container {
+
+    .subtitle-item {
+      display: flex;
+      align-items: center;
+
+      div {
+        width: 40px;
+        height: 20px;
+        margin-right: 0.25rem;
+        border-radius: 0.25rem;
+      }
+    }
+  }
+}

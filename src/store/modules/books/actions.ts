@@ -1,3 +1,4 @@
+import { DataEntry } from "react-minimal-pie-chart/types/commonTypes";
 import { IBookState, ISearchBookState } from "./types";
 
 export function searchBooks(searchBook: ISearchBookState, searchValue: string) {
@@ -6,6 +7,24 @@ export function searchBooks(searchBook: ISearchBookState, searchValue: string) {
     payload: {
       searchBook,
       searchValue,
+    }
+  }
+}
+
+export function filterBooksByCategory(category: string) {
+  return {
+    type: 'FILTER_BOOKS_BY_CATEGORY',
+    payload: {
+      category
+    }
+  }
+}
+
+export function addCategories(categories: DataEntry[]) {
+  return {
+    type: 'ADD_CATEGORIES',
+    payload: {
+      categories,
     }
   }
 }

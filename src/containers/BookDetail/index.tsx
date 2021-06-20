@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Row, Col } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { useNotification } from '../../hooks/useNotification';
 import { api } from '../../services/api';
@@ -126,33 +126,40 @@ export const BookDetail: React.FC = () => {
           ) : (
             <Card.Body>
               <div className="header-container">
-                <img 
-                  src={book?.volumeInfo.imageLinks?.small || logo} 
-                  alt="Logo" 
-                />
-                <div className="book-header-info">
-                  <Card.Title as="h1">{book?.volumeInfo.title}</Card.Title>
-                  <p className="authors">
-                    Autores: {book?.volumeInfo.authors?.join(', ') || 'Autor não informado'}
-                  </p>
-                  <div className="book-averageRating">
-                    <span>Nota: </span>
-                      {
-                        book?.volumeInfo.averageRating ? 
-                          generateStars(book?.volumeInfo.averageRating) : 
-                          <small>Sem nota</small>
-                      }
-                  </div>
-                  <p className="authors">
-                    Editora: {book?.volumeInfo.publisher || 'Editora não informado'}
-                  </p>
-                  <p className="authors">
-                    Data da publicação: {dayjs(book?.volumeInfo.publishedDate).format('DD/MM/YYYY')}
-                  </p>
-                  <p className="authors">
-                    Categorias: {book?.volumeInfo.categories?.join(', ') || 'Categoria não informada'}
-                  </p>
-                </div>
+                <Row>
+                  <Col xl={4}>
+                    <img 
+                      src={book?.volumeInfo.imageLinks?.small || logo} 
+                      alt="Logo" 
+                    />
+                  </Col>
+                  <Col>
+                    <div className="book-header-info">
+                      <Card.Title as="h1">{book?.volumeInfo.title}</Card.Title>
+                      <p className="authors">
+                        Autores: {book?.volumeInfo.authors?.join(', ') || 'Autor não informado'}
+                      </p>
+                      <div className="book-averageRating">
+                        <span>Nota: </span>
+                          {
+                            book?.volumeInfo.averageRating ? 
+                              generateStars(book?.volumeInfo.averageRating) : 
+                              <small>Sem nota</small>
+                          }
+                      </div>
+                      <p className="authors">
+                        Editora: {book?.volumeInfo.publisher || 'Editora não informado'}
+                      </p>
+                      <p className="authors">
+                        Data da publicação: {dayjs(book?.volumeInfo.publishedDate).format('DD/MM/YYYY')}
+                      </p>
+                      <p className="authors">
+                        Categorias: {book?.volumeInfo.categories?.join(', ') || 'Categoria não informada'}
+                      </p>
+                    </div>
+                  </Col>
+                </Row>
+                
               </div>
                 
               <div className="book-description">

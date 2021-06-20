@@ -1,3 +1,5 @@
+import { DataEntry } from "react-minimal-pie-chart/types/commonTypes";
+
 export interface IImageLink {
   smallThumbnail: string;
   thumbnail: string;
@@ -55,4 +57,5 @@ export interface IApplicationBooks {
   favoritesBooks: IBookState[];
   loading: boolean;
   searchValue: string;
+  categories: DataEntry[];
 }

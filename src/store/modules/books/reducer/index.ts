@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { IApplicationBooks, ISearchBookState } from '../types';
+import { IApplicationBooks, IBookState, ISearchBookState } from '../types';
 
 const favoritesBooksLocal = localStorage.getItem('myFavoriteBooks')
 
@@ -12,7 +12,8 @@ const INITIAL_STATE: IApplicationBooks = {
   },
   favoritesBooks: favoritesBooksLocal ? JSON.parse(favoritesBooksLocal) : [],
   loading: false,
-  searchValue: ''
+  searchValue: '',
+  categories: []
 };
 
 export const application: Reducer<IApplicationBooks> = (
@@ -57,6 +58,13 @@ export const application: Reducer<IApplicationBooks> = (
       return {
         ...state,
         favoritesBooks: myFavoriteBooks,
+      };
+    }
+    case 'ADD_CATEGORIES': {
+      const { categories } = action.payload;
+      return {
+        ...state,
+        categories, 
       };
     }
     case 'START_LOADING': {
@@ -121,6 +129,25 @@ export const application: Reducer<IApplicationBooks> = (
           ...searchBook,
           page: state.searchBook.page - 1,
         },
+      };
+    }
+    case 'FILTER_BOOKS_BY_CATEGORY': {
+      const { category } = action.payload;
+      const booksFiltered: IBookState[] = [];
+      state.searchBook.items.forEach(book => {
+        if (book.volumeInfo.categories?.includes(category)) {
+          booksFiltered.push(book);
+        }
+      })
+
+      return {
+        ...state,
+        searchValue: `${state.searchValue}, categoria: ${category}`,
+        searchBook: {
+          ...state.searchBook,
+          totalItems: booksFiltered.length,
+          items: booksFiltered
+        }
       };
     }
     default:
