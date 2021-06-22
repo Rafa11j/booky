@@ -98,8 +98,10 @@ const BookCard: React.FC<BookCardServiceProps> = props => {
           alt="Logo" 
         />
         <div className="book-header-info">
-          <Card.Title as="strong">{book.volumeInfo.title}</Card.Title>
-          <p className="authors">{book.volumeInfo.authors?.join(', ') || 'Autor não informado'}</p>
+          <Card.Title as="strong" data-testid="book-title">
+            {book.volumeInfo.title}
+          </Card.Title>
+          <p className="authors" data-testid="book-authors">{book.volumeInfo.authors?.join(', ') || 'Autor não informado'}</p>
           <div>
             {
               book.volumeInfo.averageRating ? 
