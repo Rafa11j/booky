@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Row, Col } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { useNotification } from '../../hooks/useNotification';
@@ -9,9 +9,10 @@ import { IBookState } from '../../store/modules/books/types';
 import logo from '../../assets/no-image.png'
 
 import './styles.scss';
-import { MdChevronLeft, MdStar, MdStarHalf } from 'react-icons/md';
+import { MdChevronLeft } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { Loader } from '../../components/Loader';
+import useRater from '../../hooks/useRater';
 
 interface IParams {
   id: string;
@@ -20,6 +21,7 @@ interface IParams {
 export const BookDetail: React.FC = () => {
   const { id } = useParams<IParams>();
   const { addNotification } = useNotification();
+  const { generateStars } = useRater();
   const [book, setBook] = useState<IBookState>();
   const [loading, setLoading] = useState(false);
 
@@ -45,70 +47,6 @@ export const BookDetail: React.FC = () => {
     }
 
   }, [id, addNotification]);
-
-  const generateStars = useCallback((rate: number) => {
-    const starsLength = Array.from({length: 5}, (v, k) => k + 1);
-    if (rate) {
-      const format = String(rate).split('.');
-      const length = Number(format[0]);
-      if (format.length > 1) {
-        const list = Array.from({length}, (v, k) => k + 1)
-        const rest = 5 - (list.length + 1);
-        const restList = Array.from({length: rest}, (v, k) => k + 1)
-
-        return (
-          <>
-            {
-              list.map(item => (
-                <MdStar key={item} color="#ffc107" />
-              ))
-            }
-            <MdStarHalf color="#ffc107" />
-            {
-              rest > 0 &&
-                restList.map(item => (
-                  <MdStar key={item} color="#8c8c8c" />
-                ))
-            }
-          </>
-        )
-      } else {
-        const list = Array.from({length}, (v, k) => k + 1)
-        const rest = 5 - list.length;
-        const restList = Array.from({length: rest}, (v, k) => k + 1)
-        return (
-          <>
-            {
-              rest > 0 ? (
-                <>
-                  {
-                    list.map(item => (
-                      <MdStar key={item} color="#ffc107" />
-                    ))
-                  }
-                  {
-                    restList.map(item => (
-                      <MdStar key={item} color="#8c8c8c" />
-                    ))
-                  }
-                </>
-
-              ) : (
-                list.map(item => (
-                  <MdStar key={item} color="#ffc107" />
-                ))
-              )
-            }
-          </>
-        )
-      }
-    }
-    return (
-      starsLength.map(item => (
-        <MdStar key={item} color="#8c8c8c" />
-      ))
-    )
-  }, []);
 
   return (
     <div className="book-detail-container">
